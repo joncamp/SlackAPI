@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http" />
@@ -38,16 +42,12 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="WebSocket4Net">
-      <HintPath>..\packages\WebSocket4Net.0.11\lib\net45\WebSocket4Net.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attachment.cs" />
-    <Compile Include="Group.cs" />
+    <Compile Include="Reaction.cs" />
+    <Compile Include="RequestStateForTask.cs" />
+    <Compile Include="RPCMessages\AccessTokenResponse.cs" />
     <Compile Include="RPCMessages\AuthSigninResponse.cs" />
     <Compile Include="RPCMessages\AuthStartResponse.cs" />
     <Compile Include="RPCMessages\AuthTestResponse.cs" />
@@ -57,6 +57,8 @@
     <Compile Include="RPCMessages\ChannelMessageHistory.cs" />
     <Compile Include="ContextMessage.cs" />
     <Compile Include="DirectMessageConversation.cs" />
+    <Compile Include="RPCMessages\DeletedResponse.cs" />
+    <Compile Include="RPCMessages\FindTeamResponse.cs" />
     <Compile Include="RPCMessages\GroupUnarchiveResponse.cs" />
     <Compile Include="RPCMessages\GroupSetTopicResponse.cs" />
     <Compile Include="RPCMessages\GroupSetPurposeResponse.cs" />
@@ -77,6 +79,7 @@
     <Compile Include="RPCMessages\FileInfoResponse.cs" />
     <Compile Include="RPCMessages\FileListResponse.cs" />
     <Compile Include="RPCMessages\FileUploadResponse.cs" />
+    <Compile Include="RPCMessages\JoinDirectMessageChannelResponse.cs" />
     <Compile Include="RPCMessages\UserCountsResponse.cs" />
     <Compile Include="RPCMessages\GroupListResponse.cs" />
     <Compile Include="RPCMessages\GroupMessageHistory.cs" />
@@ -99,8 +102,10 @@
     <Compile Include="RPCMessages\SearchResponseMessages.cs" />
     <Compile Include="SlackClient.cs" />
     <Compile Include="RPCMessages\StarListResponse.cs" />
+    <Compile Include="SlackScope.cs" />
     <Compile Include="SlackSocket.cs" />
     <Compile Include="SlackSocketClient.cs" />
+    <Compile Include="SlackTaskClient.cs" />
     <Compile Include="Team.cs" />
     <Compile Include="TeamPreferences.cs" />
     <Compile Include="User.cs" />
@@ -110,18 +115,36 @@
     <Compile Include="UserTeamCombo.cs" />
     <Compile Include="Utilities\ILockFree.cs" />
     <Compile Include="Utilities\LockFreeQueue.cs" />
+    <Compile Include="WebSocketMessages\ChannelArchive.cs" />
+    <Compile Include="WebSocketMessages\ChannelCreated.cs" />
+    <Compile Include="WebSocketMessages\ChannelDeleted.cs" />
     <Compile Include="WebSocketMessages\ChannelMarked.cs" />
+    <Compile Include="WebSocketMessages\ChannelRename.cs" />
+    <Compile Include="WebSocketMessages\ChannelUnarchive.cs" />
     <Compile Include="WebSocketMessages\DeletedMessage.cs" />
+    <Compile Include="WebSocketMessages\FileShareMessage.cs" />
+    <Compile Include="WebSocketMessages\GroupArchive.cs" />
+    <Compile Include="WebSocketMessages\GroupClose.cs" />
+    <Compile Include="WebSocketMessages\GroupJoined.cs" />
+    <Compile Include="WebSocketMessages\GroupLeft.cs" />
+    <Compile Include="WebSocketMessages\GroupOpen.cs" />
+    <Compile Include="WebSocketMessages\GroupRename.cs" />
+    <Compile Include="WebSocketMessages\GroupUnarchive.cs" />
     <Compile Include="WebSocketMessages\Hello.cs" />
     <Compile Include="WebSocketMessages\MessageReceived.cs" />
     <Compile Include="WebSocketMessages\NewMessage.cs" />
     <Compile Include="WebSocketMessages\Ping.cs" />
     <Compile Include="WebSocketMessages\Pong.cs" />
     <Compile Include="WebSocketMessages\PresenceChange.cs" />
+    <Compile Include="WebSocketMessages\TeamJoin.cs" />
     <Compile Include="WebSocketMessages\Typing.cs" />
+    <Compile Include="WebSocketMessages\UserChange.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="SlackAPI.nuspec" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
